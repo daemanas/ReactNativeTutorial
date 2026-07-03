@@ -1,37 +1,94 @@
 
-import {  SafeAreaView, Text , StyleSheet, Image,useColorScheme, Button, TouchableOpacity, Alert, ScrollView} from 'react-native';
+import { SafeAreaView, Text, FlatList, StyleSheet, Image, View } from 'react-native';
 import React from 'react';
 function App() {
-  // const theme = useColorScheme()
-  // const isTheme = theme === 'dark';
-  // const backgroundColor = isTheme ? 'black' : 'red';
-  // const textColor = isTheme ? 'white' : 'black';
+
+  const students = [
+    { id: '1', name: 'Daem', email: 'daem@example.com', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '2', name: 'Rahul', email: 'rahul@example.com', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '3', name: 'Amit', email: 'amit@example.com', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '4', name: 'Sakib', email: 'sakib@example.com', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '5', name: 'Rohit', email: 'rohit@example.com', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '6', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '7', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '8', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '9', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '10', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '11', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '12', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '13', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '14', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '15', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '16', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '17', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDR aH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '18', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '19', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '20', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '21', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '22', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '23', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '24', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '25', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '26', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '27', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '28', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '29', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+
+    { id: '30', name: 'Rohit', email: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3' },
+  ];
+
+
   return (
+    <View style={styles.container} >
 
-    // <ScrollView style={[styles.container, { backgroundColor : backgroundColor }]}>
-    <ScrollView
-      ContentContainerStyle={{ gap: 10 }}
-     style={styles.container}>
-      <Text style={styles.text }>Hello World </Text>
-      <Text style={styles.text}>i am daem anas </Text>
-      <Image style={styles.image} source={{uri: 'https://gratisography.com/wp-content/uploads/2025/05/gratisography-moon-robot-1035x780.jpg'}} />
-      <Image style={styles.image} source={{uri: 'https://gratisography.com/wp-content/uploads/2025/05/gratisography-moon-robot-1035x780.jpg'}} />
-      <Image style={styles.image} source={{uri: 'https://gratisography.com/wp-content/uploads/2025/05/gratisography-moon-robot-1035x780.jpg'}} />
-      <Image style={styles.image} source={{uri: 'https://gratisography.com/wp-content/uploads/2025/05/gratisography-moon-robot-1035x780.jpg'}} />
-      <Image style={styles.image} source={{uri: 'https://gratisography.com/wp-content/uploads/2025/05/gratisography-moon-robot-1035x780.jpg'}} />
-      <Image style={styles.image} source={{uri: 'https://gratisography.com/wp-content/uploads/2025/05/gratisography-moon-robot-1035x780.jpg'}} />
-      <Image style={styles.image} source={{uri: 'https://gratisography.com/wp-content/uploads/2025/05/gratisography-moon-robot-1035x780.jpg'}} />
-      <Image style={styles.image} source={{uri: 'https://gratisography.com/wp-content/uploads/2025/05/gratisography-moon-robot-1035x780.jpg'}} />
-      <Image style={styles.image} source={{uri: 'https://gratisography.com/wp-content/uploads/2025/05/gratisography-moon-robot-1035x780.jpg'}} />
-      <Image style={styles.image} source={{uri: 'https://gratisography.com/wp-content/uploads/2025/05/gratisography-moon-robot-1035x780.jpg'}} />
-      <Image style={styles.image} source={{uri: 'https://gratisography.com/wp-content/uploads/2025/05/gratisography-moon-robot-1035x780.jpg'}} />
-      <Image style={styles.image} source={{uri: 'https://gratisography.com/wp-content/uploads/2025/05/gratisography-moon-robot-1035x780.jpg'}} />
-      <Image style={styles.image} source={{uri: 'https://gratisography.com/wp-content/uploads/2025/05/gratisography-moon-robot-1035x780.jpg'}} />
-      <TouchableOpacity style={{backgroundColor: 'green', padding: 10, borderRadius: 5}} onPress={() =>Alert.alert("button clicked")}>
-        <Text>Click Me</Text>
-      </TouchableOpacity>
-    </ScrollView>
 
+      <FlatList
+        data={students}
+        renderItem={({ item }) => (
+          <View style={styles.card}>
+            <Image
+              style={{ height: 40, width: 40, borderRadius: 50, padding: 10, marginTop: 10 }}
+              source={{ uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn3gv2YE4e9rr59PDRaH2rUQ7JlNb3qosw2a0O5aj2f9H4dEq3" }} />
+            <Text>Name</Text>
+            <Text>Email</Text>
+          </View>
+        )}
+        keyExtractor={item => item.id}
+        numColumns={2}
+        ItemSeparatorComponent={<View style={{ height: 20 }} />}
+        columnWrapperStyle={{ gap: 10 }}
+      />
+
+
+    </View>
   )
 }
 
@@ -39,19 +96,17 @@ export default App;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    padding: 20, 
-    backgroundColor: 'red', 
-    margin: 30, 
-    // alignItems: "center", 
-    // justifyContent: "center",
-    // gap: 10,
+    height: '100%',
+    width: '100%',
+    paddingTop: 50,
+    padding: 20,
+    backgroundColor: '#dadada',
   },
-  image: {
-    height: 200,
-    width: 300
-  },
-  text: {
-    fontSize: 20,
+  card: {
+    height: 100,
+    width: 100,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    alignItems: 'center',
   }
 })
