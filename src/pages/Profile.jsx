@@ -1,10 +1,12 @@
 import { Button, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Profile = ({navigation}) => {
+const Profile = ({ navigation}) => {
+
   return (
-    <View>
-      <Text>Profile</Text>
+    <View style={styles.container}>
+      <Text >Profile</Text>
+
       <Button title="Go To Search" onPress={() => navigation.navigate('Search')}  ></Button>
     </View>
   )
@@ -12,4 +14,12 @@ const Profile = ({navigation}) => {
 
 export default Profile
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+    width: '100%',
+    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+})
